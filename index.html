@@ -18,27 +18,27 @@
     position: relative;
   }
 
-  /* Tarjeta compacta */
+  /* Tarjeta más pequeña y transparente */
   .card {
-    background: white;
+    background: rgba(255, 255, 255, 0.85); /* transparencia para ver las flores */
     border-radius: 20px;
     box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-    padding: 20px 25px;
-    width: 90%;
-    max-width: 400px;
+    padding: 15px 20px; /* más compacto */
+    width: 85%;
+    max-width: 350px;
     text-align: center;
     position: relative;
     z-index: 1;
   }
 
-  h1 { color: #d86ba3; font-size: 1.8rem; margin-bottom: 8px; }
-  h2 { color: #888; font-size: 1rem; margin-bottom: 15px; }
-  .poem { margin: 15px 0; font-size: 0.9rem; font-style: italic; line-height: 1.5; color: #555; white-space: pre-line; }
+  h1 { color: #d86ba3; font-size: 1.7rem; margin-bottom: 6px; }
+  h2 { color: #888; font-size: 0.95rem; margin-bottom: 12px; }
+  .poem { margin: 12px 0; font-size: 0.9rem; font-style: italic; line-height: 1.5; color: #555; white-space: pre-line; }
 
   button {
-    margin-top: 15px;
-    padding: 10px 20px;
-    font-size: 0.95rem;
+    margin-top: 12px;
+    padding: 9px 18px;
+    font-size: 0.9rem;
     background: #d86ba3;
     color: white;
     border: none;
@@ -49,7 +49,7 @@
   button:hover { background: #c05791; transform: scale(1.05); }
 
   #personalPhoto {
-    margin-top: 15px;
+    margin-top: 12px;
     max-width: 100%;
     border-radius: 12px;
     display: none;
@@ -57,8 +57,8 @@
   }
 
   #specialMessage {
-    margin-top: 10px;
-    font-size: 0.95rem;
+    margin-top: 8px;
+    font-size: 0.9rem;
     color: #d86ba3;
     display: none;
   }
