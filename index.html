@@ -10,52 +10,34 @@
     padding: 0;
     font-family: "Segoe UI", sans-serif;
     background: linear-gradient(to bottom right, #fff5f8, #fdfdfd);
-    overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
   }
 
-  canvas {
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 0;
-  }
-
   .card {
+    position: relative;
     background: white;
     border-radius: 20px;
     box-shadow: 0 8px 20px rgba(0,0,0,0.15);
     padding: 40px;
     max-width: 700px;
     text-align: center;
-    position: relative;
-    z-index: 2;
+    overflow: hidden; /* Limita las flores dentro de la tarjeta */
   }
 
-  h1 {
-    color: #d86ba3;
-    font-size: 2.5rem;
-    margin-bottom: 10px;
+  canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    pointer-events: none;
   }
 
-  h2 {
-    color: #888;
-    font-size: 1.2rem;
-    margin-bottom: 30px;
-  }
-
-  .poem {
-    margin: 30px 0;
-    font-size: 1.05rem;
-    font-style: italic;
-    line-height: 1.8;
-    color: #555;
-    white-space: pre-line;
-  }
-
+  h1 { color: #d86ba3; font-size: 2.5rem; margin-bottom: 10px; }
+  h2 { color: #888; font-size: 1.2rem; margin-bottom: 30px; }
+  .poem { margin: 30px 0; font-size: 1.05rem; font-style: italic; line-height: 1.8; color: #555; white-space: pre-line; }
   button {
     margin-top: 20px;
     padding: 12px 25px;
@@ -67,17 +49,14 @@
     cursor: pointer;
     transition: transform 0.3s, background 0.3s;
   }
-
-  button:hover {
-    background: #c05791;
-    transform: scale(1.05);
-  }
+  button:hover { background: #c05791; transform: scale(1.05); }
 </style>
 </head>
 <body>
-<canvas id="flowersCanvas"></canvas>
 
 <div class="card">
+  <canvas id="flowersCanvas"></canvas>
+
   <h1>Para Alexandra 🌸</h1>
   <h2>Bobis</h2>
   <div class="poem">
@@ -101,23 +80,30 @@ Alexandra puede con todo, entera.
 </div>
 
 <script>
+const card = document.querySelector(".card");
 const canvas = document.getElementById("flowersCanvas");
 const ctx = canvas.getContext("2d");
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+
+function resizeCanvas() {
+  canvas.width = card.clientWidth;
+  canvas.height = card.clientHeight;
+}
+resizeCanvas();
+window.addEventListener("resize", resizeCanvas);
 
 const flowerImages = [
-  "https://i.ibb.co/8bgM1bb/flower.png",
-  "https://i.ibb.co/3h1F7MN/flower2.png",
-  "https://i.ibb.co/Jz9N8Y5/flower3.png"
+  "https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Yellow_flower_icon.png/64px-Yellow_flower_icon.png",
+  "https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Red_flower_icon.png/64px-Red_flower_icon.png",
+  "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Pink_flower_icon.png/64px-Pink_flower_icon.png"
 ];
 
 let flowers = [];
 const mouse = { x: canvas.width/2, y: canvas.height/2 };
 
 canvas.addEventListener("mousemove", e => {
-  mouse.x = e.clientX;
-  mouse.y = e.clientY;
+  const rect = canvas.getBoundingClientRect();
+  mouse.x = e.clientX - rect.left;
+  mouse.y = e.clientY - rect.top;
 });
 
 class Flower {
@@ -128,15 +114,13 @@ class Flower {
   }
 
   reset() {
-    // Posición inicial cerca del centro (ramo)
-    this.x = canvas.width/2 + (Math.random() - 0.5) * 50;
-    this.y = canvas.height/2 + (Math.random() - 0.5) * 50;
+    this.x = canvas.width/2 + (Math.random() - 0.5) * 80;
+    this.y = canvas.height/2 + (Math.random() - 0.5) * 80;
     this.size = 20 + Math.random() * 30;
-    this.speedY = 0.5 + Math.random();
-    this.speedX = (Math.random() - 0.5) * 0.5;
+    this.speedY = 0.3 + Math.random() * 0.7;
     this.angle = Math.random() * Math.PI * 2;
     this.spin = (Math.random() - 0.5) * 0.02;
-    this.amplitude = Math.random() * 15;
+    this.amplitude = Math.random() * 10;
     this.freq = 0.01 + Math.random() * 0.02;
     this.originX = this.x;
   }
@@ -145,18 +129,20 @@ class Flower {
     this.y -= this.speedY;
     this.x = this.originX + Math.sin(this.y * this.freq) * this.amplitude;
 
-    // Interacción con el ratón
     const dx = mouse.x - this.x;
     const dy = mouse.y - this.y;
     const dist = Math.sqrt(dx*dx + dy*dy);
-    if(dist < 100){
-      this.x -= dx / 50;
-      this.y -= dy / 50;
+    if(dist < 80){
+      this.x -= dx / 60;
+      this.y -= dy / 60;
     }
 
     this.angle += this.spin;
 
-    if(this.y < -this.size) this.reset();
+    // Mantener dentro de la tarjeta
+    if(this.y < 0) this.reset();
+    if(this.x < 0) this.x = 0;
+    if(this.x > canvas.width) this.x = canvas.width;
   }
 
   draw() {
@@ -170,7 +156,7 @@ class Flower {
 
 function init() {
   flowers = [];
-  for(let i=0; i<40; i++){
+  for(let i=0; i<30; i++){
     flowers.push(new Flower());
   }
 }
@@ -184,14 +170,9 @@ function animate() {
   requestAnimationFrame(animate);
 }
 
-window.addEventListener("resize", () => {
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-  init();
-});
-
 init();
 animate();
 </script>
+
 </body>
 </html>
