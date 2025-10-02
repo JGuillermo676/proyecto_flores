@@ -10,47 +10,63 @@
     padding: 0;
     font-family: "Segoe UI", sans-serif;
     background: linear-gradient(to bottom right, #fff5f8, #fdfdfd);
+    overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
+    position: relative;
   }
 
+  /* Emoji de fondo */
+  .emoji {
+    position: absolute;
+    font-size: 1.5rem;
+    animation: fall linear infinite;
+  }
+
+  @keyframes fall {
+    0% { transform: translateY(-50px) rotate(0deg); }
+    100% { transform: translateY(110vh) rotate(360deg); }
+  }
+
+  /* Tarjeta más compacta */
   .card {
     background: white;
     border-radius: 20px;
     box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-    padding: 40px;
-    max-width: 700px;
+    padding: 25px 30px;
+    width: 90%;
+    max-width: 500px;
     text-align: center;
     position: relative;
+    z-index: 1;
   }
 
-  h1 { color: #d86ba3; font-size: 2.5rem; margin-bottom: 10px; }
-  h2 { color: #888; font-size: 1.2rem; margin-bottom: 30px; }
-  .poem { margin: 30px 0; font-size: 1.05rem; font-style: italic; line-height: 1.8; color: #555; white-space: pre-line; }
+  h1 { color: #d86ba3; font-size: 2rem; margin-bottom: 8px; }
+  h2 { color: #888; font-size: 1rem; margin-bottom: 20px; }
+  .poem { margin: 20px 0; font-size: 0.95rem; font-style: italic; line-height: 1.6; color: #555; white-space: pre-line; }
 
   button {
-    margin-top: 20px;
-    padding: 12px 25px;
-    font-size: 1rem;
+    margin-top: 15px;
+    padding: 10px 20px;
+    font-size: 0.95rem;
     background: #d86ba3;
     color: white;
     border: none;
-    border-radius: 30px;
+    border-radius: 25px;
     cursor: pointer;
     transition: transform 0.3s, background 0.3s;
   }
 
   button:hover { background: #c05791; transform: scale(1.05); }
 
-  /* Estilo para la foto personal */
   #personalPhoto {
-    margin-top: 20px;
+    margin-top: 15px;
     max-width: 100%;
-    border-radius: 15px;
-    display: none; /* Oculta la foto hasta hacer click */
-    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    border-radius: 12px;
+    display: none;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.2);
   }
 </style>
 </head>
@@ -83,14 +99,28 @@ Alexandra puede con todo, entera.
 </div>
 
 <script>
+  // Mostrar mensaje y foto al hacer click
   const button = document.getElementById("showPhotoBtn");
   const photo = document.getElementById("personalPhoto");
 
   button.addEventListener("click", () => {
-    photo.style.display = "block"; // Muestra la foto
-    button.style.display = "none"; // Oculta el botón si quieres
+    alert("Eres increíble 💖");
+    photo.style.display = "block";
   });
+
+  // Generar emojis de flores cayendo
+  const emojis = ['🌸','🌷','🌺','💐','🌹'];
+  for(let i=0; i<30; i++){
+    const span = document.createElement('span');
+    span.classList.add('emoji');
+    span.textContent = emojis[Math.floor(Math.random()*emojis.length)];
+    span.style.left = Math.random() * 100 + 'vw';
+    span.style.animationDuration = (5 + Math.random()*5) + 's';
+    span.style.fontSize = (12 + Math.random()*18) + 'px';
+    document.body.appendChild(span);
+  }
 </script>
 
 </body>
 </html>
+
