@@ -1,90 +1,86 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Para Alexandra (Bobis)</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: "Segoe UI", sans-serif;
-      background: linear-gradient(to bottom right, #fff5f8, #fdfdfd);
-      overflow: hidden;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Para Alexandra (Bobis)</title>
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: "Segoe UI", sans-serif;
+    background: linear-gradient(to bottom right, #fff5f8, #fdfdfd);
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
 
-    canvas {
-      position: fixed;
-      top: 0;
-      left: 0;
-      z-index: 0;
-    }
+  canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 0;
+  }
 
-    .card {
-      background: white;
-      border-radius: 20px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-      padding: 40px;
-      max-width: 700px;
-      margin: 50px auto;
-      position: relative;
-      z-index: 2;
-      text-align: center;
-    }
+  .card {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    padding: 40px;
+    max-width: 700px;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+  }
 
-    h1 {
-      color: #d86ba3;
-      font-size: 2.5rem;
-      margin-bottom: 10px;
-      animation: glow 3s ease-in-out infinite alternate;
-    }
+  h1 {
+    color: #d86ba3;
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+  }
 
-    h2 {
-      color: #888;
-      font-size: 1.2rem;
-      margin-bottom: 30px;
-    }
+  h2 {
+    color: #888;
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+  }
 
-    .poem {
-      margin: 30px 0;
-      font-size: 1.05rem;
-      font-style: italic;
-      line-height: 1.8;
-      color: #555;
-      white-space: pre-line;
-    }
+  .poem {
+    margin: 30px 0;
+    font-size: 1.05rem;
+    font-style: italic;
+    line-height: 1.8;
+    color: #555;
+    white-space: pre-line;
+  }
 
-    button {
-      margin-top: 20px;
-      padding: 12px 25px;
-      font-size: 1rem;
-      background: #d86ba3;
-      color: white;
-      border: none;
-      border-radius: 30px;
-      cursor: pointer;
-      transition: transform 0.3s, background 0.3s;
-    }
+  button {
+    margin-top: 20px;
+    padding: 12px 25px;
+    font-size: 1rem;
+    background: #d86ba3;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: transform 0.3s, background 0.3s;
+  }
 
-    button:hover {
-      background: #c05791;
-      transform: scale(1.05);
-    }
-
-    @keyframes glow {
-      from { text-shadow: 0 0 5px #f8b4d9, 0 0 10px #f5a3cf; }
-      to { text-shadow: 0 0 15px #f2a4cb, 0 0 30px #d86ba3; }
-    }
-  </style>
+  button:hover {
+    background: #c05791;
+    transform: scale(1.05);
+  }
+</style>
 </head>
 <body>
-  <canvas id="flowersCanvas"></canvas>
+<canvas id="flowersCanvas"></canvas>
 
-  <div class="card">
-    <h1>Para Alexandra 🌸</h1>
-    <h2>Bobis</h2>
-
-    <div class="poem">
+<div class="card">
+  <h1>Para Alexandra 🌸</h1>
+  <h2>Bobis</h2>
+  <div class="poem">
 Bobis camina segura,
 lleva en sus pasos la luz más pura,
 con su mirada vence al destino,
@@ -99,102 +95,103 @@ Con cada reto se hace más fuerte,
 no teme nunca a la propia suerte,
 su alma brilla, firme y sincera,
 Alexandra puede con todo, entera.
-    </div>
-
-    <p>🌷 Con cariño y gratitud, siempre para ti 🌷</p>
-    <button onclick="alert('Eres increíble 💖')">Haz clic aquí</button>
   </div>
+  <p>🌷 Con cariño y gratitud, siempre para ti 🌷</p>
+  <button onclick="alert('Eres increíble 💖')">Haz clic aquí</button>
+</div>
 
-  <script>
-    const canvas = document.getElementById("flowersCanvas");
-    const ctx = canvas.getContext("2d");
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+<script>
+const canvas = document.getElementById("flowersCanvas");
+const ctx = canvas.getContext("2d");
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
 
-    const flowerImages = [
-      "https://i.ibb.co/8bgM1bb/flower.png",
-      "https://i.ibb.co/3h1F7MN/flower2.png",
-      "https://i.ibb.co/Jz9N8Y5/flower3.png"
-    ];
+const flowerImages = [
+  "https://i.ibb.co/8bgM1bb/flower.png",
+  "https://i.ibb.co/3h1F7MN/flower2.png",
+  "https://i.ibb.co/Jz9N8Y5/flower3.png"
+];
 
-    let flowers = [];
-    const mouse = { x: 0, y: 0 };
+let flowers = [];
+const mouse = { x: canvas.width/2, y: canvas.height/2 };
 
-    canvas.addEventListener("mousemove", e => {
-      mouse.x = e.clientX;
-      mouse.y = e.clientY;
-    });
+canvas.addEventListener("mousemove", e => {
+  mouse.x = e.clientX;
+  mouse.y = e.clientY;
+});
 
-    class Flower {
-      constructor() {
-        this.img = new Image();
-        this.img.src = flowerImages[Math.floor(Math.random() * flowerImages.length)];
-        this.reset();
-      }
+class Flower {
+  constructor() {
+    this.img = new Image();
+    this.img.src = flowerImages[Math.floor(Math.random() * flowerImages.length)];
+    this.reset();
+  }
 
-      reset() {
-        this.x = Math.random() * canvas.width;
-        this.y = canvas.height + Math.random() * 100;
-        this.size = 20 + Math.random() * 40;
-        this.speedY = 1 + Math.random() * 2;
-        this.angle = Math.random() * Math.PI * 2;
-        this.spin = (Math.random() - 0.5) * 0.02;
-        this.amplitude = Math.random() * 20;
-        this.freq = 0.01 + Math.random() * 0.02;
-        this.originX = this.x;
-      }
+  reset() {
+    // Posición inicial cerca del centro (ramo)
+    this.x = canvas.width/2 + (Math.random() - 0.5) * 50;
+    this.y = canvas.height/2 + (Math.random() - 0.5) * 50;
+    this.size = 20 + Math.random() * 30;
+    this.speedY = 0.5 + Math.random();
+    this.speedX = (Math.random() - 0.5) * 0.5;
+    this.angle = Math.random() * Math.PI * 2;
+    this.spin = (Math.random() - 0.5) * 0.02;
+    this.amplitude = Math.random() * 15;
+    this.freq = 0.01 + Math.random() * 0.02;
+    this.originX = this.x;
+  }
 
-      update() {
-        this.y -= this.speedY;
-        this.x = this.originX + Math.sin(this.y * this.freq) * this.amplitude;
+  update() {
+    this.y -= this.speedY;
+    this.x = this.originX + Math.sin(this.y * this.freq) * this.amplitude;
 
-        // interacción con el ratón
-        const dx = mouse.x - this.x;
-        const dy = mouse.y - this.y;
-        const dist = Math.sqrt(dx*dx + dy*dy);
-        if(dist < 100){
-          this.x -= dx / 50;
-          this.y -= dy / 50;
-        }
-
-        this.angle += this.spin;
-
-        if(this.y < -this.size) this.reset();
-      }
-
-      draw() {
-        ctx.save();
-        ctx.translate(this.x, this.y);
-        ctx.rotate(this.angle);
-        ctx.drawImage(this.img, -this.size/2, -this.size/2, this.size, this.size);
-        ctx.restore();
-      }
+    // Interacción con el ratón
+    const dx = mouse.x - this.x;
+    const dy = mouse.y - this.y;
+    const dist = Math.sqrt(dx*dx + dy*dy);
+    if(dist < 100){
+      this.x -= dx / 50;
+      this.y -= dy / 50;
     }
 
-    function init() {
-      flowers = [];
-      for(let i=0; i<40; i++){
-        flowers.push(new Flower());
-      }
-    }
+    this.angle += this.spin;
 
-    function animate() {
-      ctx.clearRect(0,0,canvas.width,canvas.height);
-      flowers.forEach(flower => {
-        flower.update();
-        flower.draw();
-      });
-      requestAnimationFrame(animate);
-    }
+    if(this.y < -this.size) this.reset();
+  }
 
-    window.addEventListener("resize", () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-      init();
-    });
+  draw() {
+    ctx.save();
+    ctx.translate(this.x, this.y);
+    ctx.rotate(this.angle);
+    ctx.drawImage(this.img, -this.size/2, -this.size/2, this.size, this.size);
+    ctx.restore();
+  }
+}
 
-    init();
-    animate();
-  </script>
+function init() {
+  flowers = [];
+  for(let i=0; i<40; i++){
+    flowers.push(new Flower());
+  }
+}
+
+function animate() {
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  flowers.forEach(flower => {
+    flower.update();
+    flower.draw();
+  });
+  requestAnimationFrame(animate);
+}
+
+window.addEventListener("resize", () => {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  init();
+});
+
+init();
+animate();
+</script>
 </body>
 </html>
