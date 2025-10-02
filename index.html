@@ -9,7 +9,6 @@
       margin: 0;
       font-family: "Segoe UI", sans-serif;
       background: linear-gradient(to bottom right, #fff5f8, #fdfdfd);
-      background-image: url('https://www.transparenttextures.com/patterns/flowers.png');
       color: #444;
       display: flex;
       justify-content: center;
@@ -17,6 +16,7 @@
       min-height: 100vh;
       text-align: center;
       padding: 20px;
+      overflow: hidden;
     }
 
     .card {
@@ -26,6 +26,8 @@
       padding: 40px;
       max-width: 700px;
       animation: fadeIn 2s ease-in-out;
+      position: relative;
+      z-index: 2;
     }
 
     h1 {
@@ -44,6 +46,15 @@
     p {
       font-size: 1.1rem;
       line-height: 1.6;
+    }
+
+    .poem {
+      margin: 30px 0;
+      font-size: 1.05rem;
+      font-style: italic;
+      line-height: 1.8;
+      color: #555;
+      white-space: pre-line;
     }
 
     .flowers {
@@ -85,6 +96,7 @@
       transform: scale(1.05);
     }
 
+    /* Animaciones */
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(30px); }
       to { opacity: 1; transform: translateY(0); }
@@ -99,17 +111,54 @@
       0%, 100% { transform: translateY(0); }
       50% { transform: translateY(-10px); }
     }
+
+    /* 🌸 Flores animadas en el fondo */
+    .bg-flower {
+      position: absolute;
+      width: 60px;
+      height: 60px;
+      opacity: 0.4;
+      animation: fall 12s linear infinite;
+      z-index: 1;
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(-100px) rotate(0deg); }
+      100% { transform: translateY(110vh) rotate(360deg); }
+    }
   </style>
 </head>
 <body>
+  <!-- Flores de fondo -->
+  <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/Rose_pale_pink_2007.jpg" class="bg-flower" style="left: 10%; animation-delay: 0s;">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/1/14/Lilium_candidum.jpg" class="bg-flower" style="left: 40%; animation-delay: 3s; width:50px; height:50px;">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/2/25/Gerbera_04.jpg" class="bg-flower" style="left: 70%; animation-delay: 6s; width:70px; height:70px;">
+
   <div class="card">
     <h1>Para Alexandra 🌸</h1>
-    <h2>(alias Bobis)</h2>
+    <h2>Bobis</h2>
     <p>
       Eres una persona única y especial, tan hermosa y brillante como estas flores.  
       Gracias por estar en mi vida y llenar cada día de alegría, ternura y luz.  
       Esta página es solo un pequeño detalle para recordarte lo importante que eres.  
     </p>
+
+    <div class="poem">
+Bobis camina segura,
+lleva en sus pasos la luz más pura,
+con su mirada vence al destino,
+todo camino le abre camino.
+
+No hay muro alto que la detenga,
+ni sombra fría que la contenga,
+ella es un río, fuerte y constante,
+voz de esperanza, fuego vibrante.
+
+Con cada reto se hace más fuerte,
+no teme nunca a la propia suerte,
+su alma brilla, firme y sincera,
+Alexandra puede con todo, entera.
+    </div>
 
     <div class="flowers">
       <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Gerbera_04.jpg/640px-Gerbera_04.jpg" alt="Gerbera Rosa">
