@@ -5,84 +5,52 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Para Alexandra (Bobis)</title>
 <style>
-  /* Fondo de pantalla suave */
   body {
     margin: 0;
     padding: 0;
     font-family: "Segoe UI", sans-serif;
-    background: linear-gradient(135deg, #ffe9f2, #fffdfd);
+    background: linear-gradient(to bottom right, #fff5f8, #fdfdfd);
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
   }
 
-  /* Tarjeta */
   .card {
-    background: #ffffffcc; /* Fondo blanco semitransparente */
-    border-radius: 25px;
-    box-shadow: 0 12px 30px rgba(0,0,0,0.1);
-    padding: 50px 40px;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    padding: 40px;
     max-width: 700px;
     text-align: center;
     position: relative;
-    backdrop-filter: blur(10px); /* Efecto vidrio */
-    transition: transform 0.3s;
   }
 
-  .card:hover {
-    transform: scale(1.02); /* Pequeña animación al pasar el ratón */
-  }
+  h1 { color: #d86ba3; font-size: 2.5rem; margin-bottom: 10px; }
+  h2 { color: #888; font-size: 1.2rem; margin-bottom: 30px; }
+  .poem { margin: 30px 0; font-size: 1.05rem; font-style: italic; line-height: 1.8; color: #555; white-space: pre-line; }
 
-  /* Títulos */
-  h1 {
-    color: #d86ba3;
-    font-size: 2.8rem;
-    margin-bottom: 10px;
-    background: linear-gradient(to right, #f8b4d9, #d86ba3);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: glow 3s ease-in-out infinite alternate;
-  }
-
-  h2 {
-    color: #888;
-    font-size: 1.3rem;
-    margin-bottom: 30px;
-  }
-
-  /* Poesía */
-  .poem {
-    margin: 30px 0;
-    font-size: 1.05rem;
-    font-style: italic;
-    line-height: 1.8;
-    color: #555;
-    white-space: pre-line;
-  }
-
-  /* Botón elegante */
   button {
-    margin-top: 25px;
-    padding: 14px 30px;
+    margin-top: 20px;
+    padding: 12px 25px;
     font-size: 1rem;
-    background: linear-gradient(135deg, #f8b4d9, #d86ba3);
+    background: #d86ba3;
     color: white;
     border: none;
     border-radius: 30px;
     cursor: pointer;
-    transition: transform 0.3s, box-shadow 0.3s;
+    transition: transform 0.3s, background 0.3s;
   }
 
-  button:hover {
-    transform: scale(1.05);
-    box-shadow: 0 8px 20px rgba(216,107,163,0.4);
-  }
+  button:hover { background: #c05791; transform: scale(1.05); }
 
-  /* Animación suave para el título */
-  @keyframes glow {
-    0% { text-shadow: 0 0 5px #f8b4d9, 0 0 10px #f5a3cf; }
-    100% { text-shadow: 0 0 15px #f2a4cb, 0 0 30px #d86ba3; }
+  /* Estilo para la foto personal */
+  #personalPhoto {
+    margin-top: 20px;
+    max-width: 100%;
+    border-radius: 15px;
+    display: none; /* Oculta la foto hasta hacer click */
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
   }
 </style>
 </head>
@@ -110,8 +78,19 @@ Alexandra puede con todo, entera.
   </div>
 
   <p>🌷 Con cariño y gratitud, siempre para ti 🌷</p>
-  <button onclick="alert('Eres increíble 💖')">Haz clic aquí</button>
+  <button id="showPhotoBtn">Haz clic aquí</button>
+  <img id="personalPhoto" src="tu-foto.jpg" alt="Foto personal">
 </div>
+
+<script>
+  const button = document.getElementById("showPhotoBtn");
+  const photo = document.getElementById("personalPhoto");
+
+  button.addEventListener("click", () => {
+    photo.style.display = "block"; // Muestra la foto
+    button.style.display = "none"; // Oculta el botón si quieres
+  });
+</script>
 
 </body>
 </html>
