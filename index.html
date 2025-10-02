@@ -18,10 +18,9 @@
     position: relative;
   }
 
-  /* Emoji de fondo */
+  /* Emojis de flores */
   .emoji {
     position: absolute;
-    font-size: 1.5rem;
     animation: fall linear infinite;
   }
 
@@ -30,22 +29,22 @@
     100% { transform: translateY(110vh) rotate(360deg); }
   }
 
-  /* Tarjeta más compacta */
+  /* Tarjeta más compacta para móvil */
   .card {
     background: white;
     border-radius: 20px;
     box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-    padding: 25px 30px;
+    padding: 20px 25px;
     width: 90%;
-    max-width: 500px;
+    max-width: 400px;
     text-align: center;
     position: relative;
     z-index: 1;
   }
 
-  h1 { color: #d86ba3; font-size: 2rem; margin-bottom: 8px; }
+  h1 { color: #d86ba3; font-size: 1.8rem; margin-bottom: 8px; }
   h2 { color: #888; font-size: 1rem; margin-bottom: 20px; }
-  .poem { margin: 20px 0; font-size: 0.95rem; font-style: italic; line-height: 1.6; color: #555; white-space: pre-line; }
+  .poem { margin: 15px 0; font-size: 0.9rem; font-style: italic; line-height: 1.5; color: #555; white-space: pre-line; }
 
   button {
     margin-top: 15px;
@@ -95,32 +94,32 @@ Alexandra puede con todo, entera.
 
   <p>🌷 Con cariño y gratitud, siempre para ti 🌷</p>
   <button id="showPhotoBtn">Haz clic aquí</button>
-  <img id="personalPhoto" src="Imagen111.jpg" alt="Foto personal">
+  <img id="personalPhoto" src="tu-foto.jpg" alt="Foto personal">
 </div>
 
 <script>
-  // Mostrar mensaje y foto al hacer click
+  // Mostrar foto al hacer click
   const button = document.getElementById("showPhotoBtn");
   const photo = document.getElementById("personalPhoto");
 
   button.addEventListener("click", () => {
-    alert("Eres increíble 💖");
-    photo.style.display = "block";
+    photo.style.display = "block"; // Muestra la foto
+    button.style.display = "none"; // Opcional: oculta el botón después
   });
 
   // Generar emojis de flores cayendo
   const emojis = ['🌸','🌷','🌺','💐','🌹'];
-  for(let i=0; i<30; i++){
+  const totalEmojis = 20; // Menos emojis para móviles
+  for(let i=0; i<totalEmojis; i++){
     const span = document.createElement('span');
     span.classList.add('emoji');
     span.textContent = emojis[Math.floor(Math.random()*emojis.length)];
     span.style.left = Math.random() * 100 + 'vw';
-    span.style.animationDuration = (5 + Math.random()*5) + 's';
-    span.style.fontSize = (12 + Math.random()*18) + 'px';
+    span.style.animationDuration = (4 + Math.random()*4) + 's';
+    span.style.fontSize = (10 + Math.random()*14) + 'px';
     document.body.appendChild(span);
   }
 </script>
 
 </body>
 </html>
-
